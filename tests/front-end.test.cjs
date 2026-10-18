@@ -1,6 +1,6 @@
 const assert=require('node:assert/strict');
 const mathView=require('../math-view.js');
-const course=require('../content-view.js');
+const course=require('../graph-content.js');
 let count=0;
 function checkAuthoredMath(text,label){
  assert.ok(typeof text==='string',`Missing content: ${label}`);
@@ -34,4 +34,4 @@ assert.ok(mathView.expression('int[x](cos(x))=sin(x)+C').includes('<mo>∫</mo>'
 assert.ok(!mathView.expression('v(t)=t-1').includes('<mo>·</mo>'),'Velocity notation v(t) is a function call, not a product.');
 assert.ok(mathView.prose('<img src=x onerror=alert(1)>').includes('&lt;img'));
 assert.ok(mathView.expression('<script>alert(1)</script>').includes('&lt;script'));
-console.log(`Passed display checks for all ${count} questions, 10 lesson formulas, sections, solutions, and safe rendering.`);
+console.log(`Passed display checks for all ${count} questions, ${course.topics.length} lesson formulas, sections, solutions, and safe rendering.`);

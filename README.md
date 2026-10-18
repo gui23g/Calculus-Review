@@ -6,12 +6,12 @@ Made by: Guilherme "Boler" Lopes de Carvalho.
 
 ## Study experience
 
-- **Homepage:** ten topic cards, chapter filters, a filter for the 2025 midterm’s focus areas, and locally saved exercise progress.
-- **Guided reviews:** explanations, core formulas, practical applications, common mistakes, and 31 embedded exercises with worked solutions.
+- **Homepage:** eleven topic cards, chapter filters, a filter for the 2025 midterm’s focus areas, and locally saved exercise progress.
+- **Guided reviews:** explanations, core formulas, practical applications, common mistakes, and 54 embedded exercises with worked solutions.
 - **Math input:** type normally or use each exercise’s calculator-style keypad. It inserts at the cursor, supports selections and backspace, and includes powers, fractions, roots, absolute value, trigonometric functions, variables, π, infinity, and interval union. Press Enter to check an answer. The input uses plain text, with a live typeset preview below it so you can check exactly how the expression is interpreted. Placeholders are neutral and never show a question’s answer.
-- **Mathematical display:** all 141 question statements (31 lesson exercises and 110 exam fields), the 40 lesson paragraphs, all worked solutions, and mathematical passages in application notes and warnings use explicit mathematical presentation. Fractions, radicals, powers, limits, definite/indefinite integrals, indexed sums, subscripts, evaluation brackets, lesson formula panels and expected answers render synchronously using native [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML/Reference/Element/math), with no external scripts or CDN. Use a current Chrome, Edge, Firefox or Safari browser.
+- **Mathematical display:** all 179 question statements (54 lesson exercises and 125 exam fields), the 45 lesson paragraphs, all worked solutions, and mathematical passages in application notes and warnings use explicit mathematical presentation. Fractions, radicals, powers, limits, definite/indefinite integrals, indexed sums, subscripts, evaluation brackets, lesson formula panels and expected answers render synchronously using native [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML/Reference/Element/math), with no external scripts or CDN. Use a current Chrome, Edge, Firefox or Safari browser.
 - **Feedback:** Correct, Almost, or Incorrect, followed by the expected answer and a step-by-step solution. Invalid or empty input gets a notation message without being treated as a mathematical mistake. You can edit and retry.
-- **Practice exams:** five original papers based on the six-question structure of the supplied 2025 midterm. Each has 22 answer fields, including the individual parts of the curve analysis. Starting a new attempt randomly selects a different version from the previous one and always opens empty answer fields. An inline confirmation protects an open attempt when replacing it; it does not use a browser modal.
+- **Practice exams:** five original papers based on the six-question structure of the supplied 2025 midterm. Each has 25 answer fields: the original 22 fields covering the six-question structure, plus a three-field graph-reading extension. The absolute-value question also displays its own graph. Starting a new attempt randomly selects a different version from the previous one and always opens empty answer fields. An inline confirmation protects an open attempt when replacing it; it does not use a browser modal.
 - **Exam review:** check individual answers or submit the entire paper. The summary gives a practice score and links to the topics to revisit. Every graded exam exercise also links directly to its review lesson. Blank fields count as unanswered and zero points; filling them later updates the review.
 - **Persistence:** mastery progress, current exam answers, feedback, and the last selected paper use localStorage on the current browser/device. The exam landing page offers **Continue saved paper** explicitly; saved responses never appear in a new attempt. Reloading or visiting a review topic preserves the saved exam, which can then be resumed. Lesson exercises reopen with empty inputs while mastery progress remains on the homepage. Private browsing or blocked storage may prevent saving, but practice still works. Clear this site’s browser storage to reset everything.
 
@@ -25,6 +25,7 @@ The source PDFs are in `.context/`. Reviews are original explanations informed b
 | --- | --- | --- |
 | Functions, domains, symmetry, composition, graph transformations | Ch1 §1.1; HW1 Q6–9 | Q1, Q4 |
 | Limits, continuity, IVT, infinity | Ch1 §§1.3–1.6; HW1 Q1–4 | Q3 |
+| Graph values, one-sided limits, holes/jumps, tangent slopes, derivative graphs, transformations and signed area | HW1 Q1–2; HW2 Q2; Ch1 §1.1; Ch3 §§3.3–3.4; Ch4 §§4.2–4.3 | Q4–5, plus additional worksheet/lecture practice |
 | Derivative definition and tangent lines | Ch2 §§2.1–2.2; HW1 Q5 | Q2 |
 | Power, product, quotient, chain and higher derivatives | Ch2 §§2.3–2.5; HW2 Q3–11 | Q5 |
 | Implicit differentiation and related rates | Ch2 §§2.6–2.7; HW2 Q12–15 | Additional lecture coverage |
@@ -34,7 +35,7 @@ The source PDFs are in `.context/`. Reviews are original explanations informed b
 | Antiderivatives and initial conditions | Ch3 §3.7; Ch4 §4.3 | Q6 |
 | Riemann sums, definite integrals, signed area, distance | Ch4 §§4.1–4.3 | Additional lecture coverage |
 
-The homepage labels last year’s focus; the supplied material does not establish the exact scope of this year’s exam. Chapter 4 is included because it was provided. Practice exams intentionally follow last year’s structure. The original exam’s square-root endpoint limit can depend on the domain-relative convention; practice variants explicitly request a right-hand limit to avoid that ambiguity.
+The homepage labels last year’s focus; the supplied material does not establish the exact scope of this year’s exam. Chapter 4 is included because it was provided. The six core exam questions follow last year’s structure. The new seventh question is an additional graph-reading extension covering the worksheet skills; depending on the version, it can also include signed-area practice from Chapter 4. The original exam’s square-root endpoint limit can depend on the domain-relative convention; practice variants explicitly request a right-hand limit to avoid that ambiguity.
 
 ## Run locally
 
@@ -48,7 +49,7 @@ Visit `http://localhost:8000`. No installation or build is needed. Optional Goog
 
 ## Publish with GitHub Pages
 
-1. Commit and push `index.html`, `styles.css`, `math.js`, `math-view.js`, `content.js`, `content-view.js`, `app.js`, `.nojekyll`, and optionally the source PDFs to your GitHub repository.
+1. Commit and push `index.html`, `styles.css`, `math.js`, `math-view.js`, `content.js`, `content-view.js`, `graph-content.js`, `graphs.js`, `app.js`, `.nojekyll`, and optionally the source PDFs to your GitHub repository.
 2. Open the repository’s **Settings → Pages**.
 3. Choose **Deploy from a branch**, select the branch containing the files (usually `main`), and select **/(root)**. Save.
 4. After deployment completes, open `https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/`.
@@ -93,6 +94,9 @@ This is a numerical equivalence checker, not a complete symbolic algebra system 
 | `math.js` | Expression/interval parsing and grading |
 | `math-view.js` | Safe, synchronous MathML rendering of expressions and `$...$` spans |
 | `content-view.js` | Explicit typeset question statements and lesson formula panels |
+| `graph-content.js` | Original SVG graph datasets, graph-reading lesson and three-field exam extensions |
+| `graphs.js` | Responsive SVG figures, labeled axes, open/closed points, shading and text descriptions |
+| `tests/graphs.test.cjs` | Independent geometric checks of graphs, answer keys and accessibility IDs |
 | `app.js` | Hash routing, rendering, input, local progress and exam flow |
 | `tests/math.test.cjs` | Automated grading, parser and independent derivative checks |
 | `tests/front-end.test.cjs` | All question/formula render checks and HTML escaping |
@@ -107,10 +111,27 @@ Run the meaningful math checks with Node.js:
 ```sh
 node tests/math.test.cjs
 node tests/front-end.test.cjs
+node tests/graphs.test.cjs
 ```
 
 They validate every reference answer across all topics and papers, equivalent expressions, invalid notation, interval endpoint handling, missing constants, rounding, operator precedence, and independent finite-difference checks of all exam curve derivatives and initial-value functions. Display tests verify every question, expected answer, complete solution step, lesson paragraph and formula, including safe escaping of HTML-like input. A regression check explicitly detects mathematical notation left outside `$...$` delimiters in paragraphs, solutions, application notes and warnings; checking only rendering failures would miss untouched plain-text formulas. The integral-evaluation example, Riemann summation, integration constants and velocity function notation have dedicated checks.
 
-The revised interface was also checked in the in-app browser: all ten lesson pages opened with blank inputs and rendered formulas at 390px without horizontal overflow; a fresh exam had 22 blank fields; roots/fractions and a correct feedback answer rendered visibly; keypad insertion produced `sqrt(9)` with a typeset preview; reload required explicit resume and preserved the draft; and replacing a paper selected another version with all fields blank. Browser checks used temporary draft inputs that were cleared afterwards, leaving no test answers in the active paper.
+Browser verification covered the original ten lesson pages and the new graph-reading lesson. The graph-reading page has five figures and 23 empty exercise fields, no math-display fallbacks, working section jumps, and correct feedback on a graphical-limit answer. The homepage Graph reading filter opens the new lesson. Both desktop and 390px mobile layouts were inspected without horizontal overflow.
 
-After completing the mathematical formatting of the lesson prose, all ten pages were checked again at 390px: no fallback notation and no formulas extending beyond the viewport. The evaluation theorem and displacement/distance paragraphs were also visually checked in the browser with stacked fractions, integral bounds and evaluation bounds.
+The revised practice exam opened with 25 empty answer fields and four figures (the absolute-value graph plus three extension figures), with unique figure/ARIA IDs. Submission included the new graph fields in the score and linked their feedback to the graph-reading lesson. Starting another paper cleared answers and feedback. Exam browser tests ran on a separate localhost origin to avoid changing the user’s saved study attempt.
+
+## Reading and interpreting graphs
+
+Open **Reading & interpreting graphs** in the study roadmap, or use the **Graph reading** homepage filter. The new lesson includes five original figures and 23 graded exercises:
+
+1. A piecewise function with open/closed points: function values, one-sided and two-sided limits, removable/jump discontinuities, domain, range and worksheet-style true/false statements.
+2. A curve and a dashed tangent: distinguish height, tangent slope and average rate of change.
+3. A graph of the derivative: infer increasing/decreasing intervals, local extrema, concavity and an inflection location, and recognize what cannot be determined about the original function.
+4. A downward absolute-value graph: reconstruct its translation, reflection and scale.
+5. A shaded velocity graph: distinguish signed integral, displacement and total distance.
+
+The figures are local SVGs with labeled scales, distinct open/closed markers and expandable text descriptions. Links at the top jump between the five lesson sections. Related existing lessons link to this visual practice. All exercises use the existing mathematical keypad, feedback and worked-solution flow. New lesson fields start empty. Existing saved exam answers are retained; newly added graph extension fields are blank in older saved attempts.
+
+Each of the five practice papers now includes three extra graph-reading questions, with a diagram immediately beside the question, worked feedback and a direct link back to the graph-reading lesson. The exact combination varies by paper. The core absolute-value transformation question also now has a plotted V.
+
+The graph tests read the plotted coordinates to independently verify holes/limits, tangent slopes, domain/range, derivative sign changes and signed triangular areas. They also check that repeated figures in a paper receive unique SVG/ARIA IDs. These tests run alongside the expression-grading and mathematical-display checks.

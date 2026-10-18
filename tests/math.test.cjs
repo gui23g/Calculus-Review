@@ -1,9 +1,9 @@
 const assert=require('node:assert/strict');
-const math=require('../math.js'),course=require('../content.js');
+const math=require('../math.js'),course=require('../graph-content.js');
 let count=0;
 function expect(raw,q,status){assert.equal(math.grade(raw,q).status,status,`${raw}: ${JSON.stringify(math.grade(raw,q))}`);count++;}
 for(const t of course.topics)for(const q of t.exercises)expect(q.displayAnswer||q.answer,q,'correct');
-for(const exam of course.exams){assert.equal(exam.questions.length,22);for(const q of exam.questions)expect(q.answer,q,'correct');}
+for(const exam of course.exams){assert.equal(exam.questions.length,25);for(const q of exam.questions)expect(q.answer,q,'correct');}
 const derivative=course.topics.find(t=>t.id==='rules').exercises[0];
 expect('((x^2+1)-2x*x)/(x^2+1)^2',derivative,'correct');
 expect('(x^2-1)/(x^2+1)^2',derivative,'incorrect');
